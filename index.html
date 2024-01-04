@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech To Text</title>
+   
+</head>
+<body>
+    <div class="cointainer">
+        <div class="row">
+            <div class="col-6 shadow mx-auto m-3 p-3 mt-5">
+                <h3> Speech to Text  </h3>
+                <hr>
+                <textarea class="form-control mb-3" id="converted">  </textarea>
+                <button class="btn btn-danger" id="speechBtn">Speech!</button>
+            </div>
+        </div>
+    </div> 
+
+    <script>
+		speechBtn.addEventListener('click', ()=>{
+	    var SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition  ;
+	    var recognition = new SpeechRecognition();
+
+	    recognition.lang = 'en-US';
+	    recognition.start();
+
+	    recognition.onresult = function(event){
+	    console.log(event);
+	    converted.innerHTML  += " " + event.results[0][0].transcript;
+	    }  
+
+	    recognition.onspeechend = function(){recognition.stop();}
+		})
+    </script>
+    
+</body>
+</html>
